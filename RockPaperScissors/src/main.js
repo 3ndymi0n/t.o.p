@@ -24,14 +24,24 @@ function gameRound(computerPlay, playerSelection) {
         
 };
 
+function playerPlay() {
+    const moves = ["scissors", "paper", "rock"];
+    let move = prompt("Scissors, Paper, or Rock").toLowerCase();
+    if (moves.includes(move) === false){
+        alert(move + "Is not a valid choice")
+        playerPlay();
+    }
+    return move;
+}
+
 function game() {
     let roundCount = 1;
     let computerWins = 0;
     let playerWins = 0;
 
-    while((playerWins <= 3) && (computerWins <= 3)){
+    while((playerWins < 3) && (computerWins < 3)){
         let computerTurn = computerPlay();
-        let playerTurn = prompt("Scissors, Paper or Rock?").toLowerCase();
+        let playerTurn = playerPlay();
         let currentRound = gameRound(computerTurn, playerTurn);
         console.log(currentRound);
         if(currentRound == "Draw!") {
